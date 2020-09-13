@@ -2,8 +2,57 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://118.31.5.29:4000/tags/Hexo/</loc>
-        <lastmod>2020-03-17T08:19:59.581Z</lastmod>
+        <loc>http://118.31.5.29/tags/BootStrap/</loc>
+        <lastmod>2020-03-29T09:43:18.998Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/Java%E9%9B%86%E5%90%88/</loc>
+        <lastmod>2020-03-29T10:20:07.668Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/JavaIO/</loc>
+        <lastmod>2020-03-29T10:44:40.434Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+        <lastmod>2020-04-03T15:01:56.171Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/Java/</loc>
+        <lastmod>2020-04-03T15:20:53.384Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</loc>
+        <lastmod>2020-04-03T15:20:53.384Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/%E7%BD%91%E7%BB%9C/</loc>
+        <lastmod>2020-04-03T15:20:53.384Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://118.31.5.29/tags/%E9%9A%8F%E7%AC%94/</loc>
+        <lastmod>2020-04-25T14:45:58.591Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          [JAVA] Set集合 - 赵宇航| Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://118.31.5.29/article/Set集合/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<link rel="alternate" href="/atom/rss2.xml" title="Ronin" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/article_header/article_header.png')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-black.jpg');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                            
+                              <a class="tag" href="/tags/#Java集合" title="Java集合">Java集合</a>
+                            
+                        </div>
+                        <h1>[JAVA] Set集合</h1>
+                        <h2 class="subheading">Java语言中级部分</h2>
+                        <span class="meta">
+                            Posted by Ronin on
+                            2020-03-29
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ronin</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="set集合">Set集合</h1>
+<h3 id="set接口的使用和特点">Set接口的使用和特点</h3>
+<p>Set接口继承自Collection接口 所以Collection里面的方法Set都可以用</p>
+<p>Set是一个接口同样无法直接实例化使用需要多态实例化</p>
+<p>Set集合不包含重复元素 没有索引</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">set.add(<span class="string">"java"</span>);</span><br><span class="line">set.add(<span class="string">"hello"</span>);</span><br><span class="line">set.add(<span class="string">"wolrd"</span>);</span><br><span class="line"></span><br><span class="line">set.add(<span class="string">"java"</span>); <span class="comment">//不报错但是不会添加到元素中 因为重复添加了</span></span><br></pre></td></tr></table></figure>
+<h3 id="哈希值">哈希值</h3>
+<p>同一个对象多次调用 Hashcode()方法哈希值是相同的</p>
+<p>不同对象 即使是同一个类下的Hashcode()值也是不同的 但是基本类型的对象相反 只要值相同hashcode值就相同</p>
+<h3 id="hashset集合">HashSet集合</h3>
+<p>HashSet集合是Set接口的实现类 是可以直接进行实例化使用的 HashSet没有特有方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashSet&lt;String&gt; hs = new HashSet&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<p>HashSet保证元素同一性？</p>
+<p>HashSet集合中会首先调用hashcode方法判断新增对象的hashcode值是否与已经存入的对象的hashcode相同 如果不同直接存入 如果相同那就使用equls方法比较两个对象 所以要想重写HashSet对于存储的逻辑就必须在类中重写hashcode和equal方法</p>
+<h3 id="linkedhashset">LinkedHashSet</h3>
+<p>LinkedHashSet的底层使用hash表加链表实现的 链表保证存入元素的顺序和取出时的一致性 Hash表保证存入元素不能相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashSet&lt;String&gt; lhs  = new LinkedHashSet&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<h3 id="treeset集合">TreeSet集合</h3>
+<p>TreeSet集合的特点是元素有序 这里的顺序是根据元素的排序规则进行排序 具体排序方式取决于构造方法</p>
+<ul>
+<li>TreeSet() ： 根据元素的自然排序规则进行排序</li>
+<li>TreeSet(Comparator<e> c) 传入一个自然排序接口根据接口中compareto指定排序规则</e></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">int</span> grade;</span><br><span class="line">    Student()&#123;&#125;;</span><br><span class="line">    Student(<span class="keyword">int</span> age,<span class="keyword">int</span> grade)&#123;<span class="keyword">this</span>.age = age;<span class="keyword">this</span>.grade = grade&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.age&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getGarde</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.grade&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SetAge</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;<span class="keyword">this</span>.age = age&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SetGarde</span><span class="params">(<span class="keyword">int</span> grade)</span></span>&#123;<span class="keyword">this</span>.garde = garde&#125;;</span><br><span class="line">&#125;</span><br><span class="line">-----------------</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        Studnet s1 = <span class="keyword">new</span> Student(<span class="number">10</span>,<span class="number">100</span>);</span><br><span class="line">        Student s2 = <span class="keyword">new</span> Student(<span class="number">20</span>,<span class="number">50</span>);</span><br><span class="line">        <span class="comment">//下面语句会报错 因为Student类型的元素没有可指定的排序规则</span></span><br><span class="line">        TreeSet&lt;Student&gt; ts = <span class="keyword">new</span> TreeSet&lt;Student&gt;();</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">------------------</span><br><span class="line"> <span class="comment">//那么应该怎么做呢？ 既然它需要排序方法我们就让Student类实现 Comparable接口 重写Comparato方法即可</span></span><br><span class="line">   <span class="comment">//第一次改进 </span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">        <span class="keyword">int</span> grade;</span><br><span class="line">        Student()&#123;&#125;;</span><br><span class="line">        Student(<span class="keyword">int</span> age,<span class="keyword">int</span> grade)&#123;<span class="keyword">this</span>.age = age;<span class="keyword">this</span>.grade = grade&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.age&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getGarde</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.grade&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetAge</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;<span class="keyword">this</span>.age = age&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetGarde</span><span class="params">(<span class="keyword">int</span> grade)</span></span>&#123;<span class="keyword">this</span>.garde = garde&#125;;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//这样就不会报错了 但是比较器中我们始终返回的是0 0就意味这TreeSet认为的元素相同 返回的是正数就是相对上一个元素升序 负数就是相对于上一个元素降序</span></span><br><span class="line"><span class="comment">//第二次改进</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Student</span>&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">        <span class="keyword">int</span> grade;</span><br><span class="line">        Student()&#123;&#125;;</span><br><span class="line">        Student(<span class="keyword">int</span> age,<span class="keyword">int</span> grade)&#123;<span class="keyword">this</span>.age = age;<span class="keyword">this</span>.grade = grade&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.age&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getGarde</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.grade&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetAge</span><span class="params">(<span class="keyword">int</span> age)</span></span>&#123;<span class="keyword">this</span>.age = age&#125;;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetGarde</span><span class="params">(<span class="keyword">int</span> grade)</span></span>&#123;<span class="keyword">this</span>.garde = garde&#125;;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Studnet s)</span> </span>&#123;</span><br><span class="line">           <span class="comment">//这里的0代表要进行排序的元素 它要跟我们的this进行比较</span></span><br><span class="line">            num1 = <span class="keyword">this</span>.garde - s.getGarde(); <span class="comment">//如果我们原来的元素的年纪减去要进来比较的元素的年纪是正数那么TreeSet就会认为第二个元素比较大 放在了后面</span></span><br><span class="line">            <span class="comment">//如果成绩相同num值就是0 那么再用年龄进行比较</span></span><br><span class="line">            num2 = (num1==<span class="number">0</span>)？<span class="keyword">this</span>.age- s.getAge():<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">return</span> num2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//这样就实现了自定义的排序规则</span></span><br><span class="line"><span class="comment">//TreeSet的另一种构造方法是在TreeSet集合定义时 传入一个比较器类型的接口对象 多采用匿名内部类实现</span></span><br><span class="line"><span class="comment">//例如这样</span></span><br><span class="line">TreeSet&lt;Student&gt; tree = <span class="keyword">new</span> TreeSet&lt;Student&gt;(<span class="keyword">new</span> Comparator&lt;Student&gt;()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student o1, Student o2)</span> </span>&#123;</span><br><span class="line">        num1 = <span class="number">01</span>.getGarde() - <span class="number">02</span>.getGarde(); <span class="comment">//如果我们原来的元素的年纪减去要进来比较的元素的年纪是正数那么TreeSet就会认为第二个元素比较大 放在了后面</span></span><br><span class="line">        <span class="comment">//如果成绩相同num值就是0 那么再用年龄进行比较</span></span><br><span class="line">        num2 = (num1==<span class="number">0</span>)？o1.getAge()- o1.getAge():<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> num2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/Map集合/" data-toggle="tooltip" data-placement="top" title="[JAVA] Map集合">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/article/List集合/" data-toggle="tooltip" data-placement="top" title="[JAVA] List集合">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                    <div class="reward">
+                        <div class="reward-button">赏 <span class="reward-code"> 
+                            <span class="alipay-code"> <img class="alipay-img" src="/img/alipay.png"><b>支付宝打赏</b></span> 
+                            <span class="wechat-code"> <img class="wechat-img" src="/img/wechatpay.png"><b>微信打赏</b> </span>
+                            </span></div>
+                        <p class="reward-notice">赞赏一下</p>
+                    </div>
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+                    <!-- disqus 评论框 start -->
+                    <div class="comment">
+                        <div id="lv-container" data-id="city" data-uid="MTAyMC80OTE2NC8yNTY1OA=="></div>
+                    </div>
+                    <!-- disqus 评论框 end -->
+                
+
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Java集合" title="Java集合">Java集合</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://blog.csdn.net/weixin_44111750" target="_blank">CSDN Blog 赵宇航</a></li>
+                    
+                        <li><a href="https://yq.aliyun.com/u/ronin1" target="_blank">阿里云栖社区 赵宇航</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+    <!-- 来必力City版公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    <!-- 来必力City版 公共JS代码 end -->
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/ronin-c">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Ronin 2020 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.huweihuang.com">胡伟煌</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
+					<br>
+					    冀ICP备20001804号 | 冀ICP备20001804号-2
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://118.31.5.29/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = 'xxx';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://118.31.5.29/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

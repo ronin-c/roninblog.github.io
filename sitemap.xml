@@ -2,18 +2,18 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <sitemap>
-        <loc>http://118.31.5.29:4000/post-sitemap.xml</loc>
-        <lastmod>2020-03-17T08:19:59.581Z</lastmod>
+        <loc>http://118.31.5.29/post-sitemap.xml</loc>
+        <lastmod>2020-04-25T14:45:58.591Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://118.31.5.29:4000/page-sitemap.xml</loc>
-        <lastmod>2020-03-17T08:19:59.617Z</lastmod>
+        <loc>http://118.31.5.29/page-sitemap.xml</loc>
+        <lastmod>2020-03-17T12:53:04.274Z</lastmod>
     </sitemap>
 
     <sitemap>
-        <loc>http://118.31.5.29:4000/tag-sitemap.xml</loc>
-        <lastmod>2020-03-17T08:19:59.581Z</lastmod>
+        <loc>http://118.31.5.29/tag-sitemap.xml</loc>
+        <lastmod>2020-03-29T09:43:18.998Z</lastmod>
     </sitemap>
 
 </sitemapindex>
